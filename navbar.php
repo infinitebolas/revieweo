@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,13 +11,12 @@
 
 <div class="login">
 <?php
-		if (!isset($_SESSION["user_id"])) {
+		if (!isset($_SESSION["pseudo"])) {
 			?>
 			<a class="topnav_link" href="register.php">ENREGISTREMENT</a>
 			<a class="topnav_link" href="login.php">CONNEXION</a>
 			<?php
 		} else {
-            if ($role)
 			?>
 			<a class="topnav_link" href="disconnect.php">DECONNEXION</a>
 			<?php

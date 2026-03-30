@@ -13,7 +13,7 @@
 		$_SESSION["pseudo"] = $user["pseudo"];
 		$_SESSION["email"] = $user["email"];
 		$_SESSION["mdp"] = $user["password"];
-		header("Location: page_client.php");
+		header("Location: index.php");
 		exit();
 	} else {
 		header("Location: login.php");
