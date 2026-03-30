@@ -1,6 +1,6 @@
 <?php
 	session_start();
-    $_SESSION["erreur"]=false; 
+    $_SESSION["doublon"]=null; 
 	require_once("db.php");
 		function check_email($db_connection, $email) {
 			$db_request = $db_connection->prepare(
@@ -11,7 +11,7 @@
 				":email" => $email,
 			]);
 			if ($db_request->rowCount()) {
-                echo ('Cet utilisateur existe déjà !');
+                $_SESSION["doublon"]=true;
                 return false;
 			}
 			return true;
@@ -32,6 +32,5 @@
 		}  
    
         header('Location: register.php');
-        $_SESSION["erreur"]=true;   
         exit();
 ?>

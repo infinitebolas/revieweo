@@ -16,9 +16,9 @@
 					<input placeholder="Mot de passe" name="mdp"><br>
 					<input class="submit-button" type="submit">
 				</form>
-                <?php if ($_SESSION["erreur"]==true){ ?>
+                <?php if (isset($_SESSION["erreur"])){ ?>
                     <p class="erreur">Mauvais mot de passe</p> 
-                <?php }?>
+                <?php $_SESSION["erreur"]=null; }?>
 			</article>
 		</main>
 	</body>

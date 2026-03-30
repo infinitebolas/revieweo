@@ -1,6 +1,6 @@
 <?php
 	session_start();
-    $_SESSION["erreur"]=false; 
+    $_SESSION["erreur"]=null; 
 	require_once("db.php");
 	$db_request = $db_connection->prepare(
 		"SELECT pseudo, email, password FROM user WHERE pseudo = :pseudo"

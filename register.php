@@ -17,9 +17,13 @@
 					<input placeholder="Mot de passe" name="mdp"><br>
 					<input class="submit-button" type="submit">
 				</form>
-                <?php if ($_SESSION["erreur"]==true){ ?>
-                    <p class="erreur"> Merci de remplir tous les champs </p> 
-                <?php }?>
+                <?php 
+                if (isset($_SESSION["doublon"])){ ?>
+                    <p class="erreur"> Cet email existe déjà </p> 
+                    
+                <?php 
+                    $_SESSION["doublon"]=null; 
+                }?>
 			</article>
 		</main>
 	</body>
