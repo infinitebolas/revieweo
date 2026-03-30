@@ -6,7 +6,7 @@
   <title>Revieweo - Critiques de Films</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="page-critiques">
   <header>
     <div class="container nav">
       <a href="index.html" class="brand">Review<span>eo</span></a>
@@ -25,36 +25,6 @@
 
   <main class="container">
     <section class="hero">
-      <div>
-        <h1>La communauté qui note, débat et recommande les meilleurs films.</h1>
-        <p>
-          Découvre les sorties du moment, lis des avis détaillés et partage tes
-          critiques avec les autres cinéphiles.
-        </p>
-        <div class="nav-actions">
-          <a class="btn primary" href="critique.html">Explorer les critiques</a>
-        </div>
-      </div>
-      <article class="hero-card">
-        <div class="poster"></div>
-        <div class="rating">
-          <span>Film de la semaine: <strong>Dune: Deuxième Partie</strong></span>
-          <span class="stars">★★★★☆</span>
-        </div>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <h2>Critiques populaires</h2>
-        <div class="chips">
-          <span class="chip">Tous</span>
-          <span class="chip">Action</span>
-          <span class="chip">Drame</span>
-          <span class="chip">Science-fiction</span>
-          <span class="chip">Animation</span>
-        </div>
-      </div>
       <div class="grid">
         <article class="movie-card">
           <div class="movie-cover"></div>
@@ -65,6 +35,7 @@
             </div>
             <p class="meta">Biopic - 2023 - 2h 59</p>
             <p class="excerpt">Une fresque ambitieuse portée par une mise en scène magistrale.</p>
+            <button class="like-btn" type="button">Like</button>
           </div>
         </article>
         <article class="movie-card">
@@ -76,6 +47,7 @@
             </div>
             <p class="meta">Animation - 2023 - 2h 20</p>
             <p class="excerpt">Visuellement bluffant et émotionnellement puissant du début à la fin.</p>
+            <button class="like-btn" type="button">Like</button>
           </div>
         </article>
         <article class="movie-card">
@@ -87,42 +59,58 @@
             </div>
             <p class="meta">Romance - 2023 - 1h 45</p>
             <p class="excerpt">Une histoire intime et délicate qui marque durablement.</p>
+            <button class="like-btn" type="button">Like</button>
           </div>
         </article>
       </div>
     </section>
+    <section class="hero">
+        <div class="grid">
+          <article class="movie-card">
+            <div class="movie-cover"></div>
+            <div class="movie-content">
+              <div class="movie-title">
+                <h3>Oppenheimer</h3>
+                <span class="score">9.1</span>
+              </div>
+              <p class="meta">Biopic - 2023 - 2h 59</p>
+              <p class="excerpt">Une fresque ambitieuse portée par une mise en scène magistrale.</p>
+              <button class="like-btn" type="button">Like</button>
+            </div>
+          </article>
+          <article class="movie-card">
+            <div class="movie-cover"></div>
+            <div class="movie-content">
+              <div class="movie-title">
+                <h3>Spider-Man: Across the Spider-Verse</h3>
+                <span class="score">8.8</span>
+              </div>
+              <p class="meta">Animation - 2023 - 2h 20</p>
+              <p class="excerpt">Visuellement bluffant et émotionnellement puissant du début à la fin.</p>
+              <button class="like-btn" type="button">Like</button>
+            </div>
+          </article>
+          <article class="movie-card">
+            <div class="movie-cover"></div>
+            <div class="movie-content">
+              <div class="movie-title">
+                <h3>Past Lives</h3>
+                <span class="score">8.4</span>
+              </div>
+              <p class="meta">Romance - 2023 - 1h 45</p>
+              <p class="excerpt">Une histoire intime et délicate qui marque durablement.</p>
+              <button class="like-btn" type="button">Like</button>
+            </div>
+          </article>
+        </div>
+      </section>
 
-    <section class="section">
-      <div class="section-head">
-        <h2>Dernières critiques publiées</h2>
-      </div>
-      <div class="latest-reviews">
-        <article class="review">
-          <div class="review-top">
-            <span>@cineMax</span>
-            <span>Il y a 2h</span>
-          </div>
-          <h3>Dune: Deuxième Partie</h3>
-          <p class="excerpt">
-            "Une claque visuelle et sonore. Villeneuve élève encore son univers."
-          </p>
-        </article>
-        <article class="review">
-          <div class="review-top">
-            <span>@filmAddict</span>
-            <span>Il y a 5h</span>
-          </div>
-          <h3>Challengers</h3>
-          <p class="excerpt">
-            "Mise en scène nerveuse, trio d'acteurs convaincant et tension constante."
-          </p>
-        </article>
-      </div>
-    </section>
+    
   </main>
 
   <footer>
     <div class="container">
+     
     </div>
   </footer>
 </body>
