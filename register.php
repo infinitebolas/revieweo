@@ -5,6 +5,7 @@
 <html>
 	<head>
 		<title>Enregistrement</title>
+        <link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<?php require_once("navbar.php"); ?>
