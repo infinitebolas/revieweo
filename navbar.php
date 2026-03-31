@@ -11,18 +11,27 @@
 
 
 <div class="login">
+	<a class="topnav_link" href="">Accueil</a>
+	<a class="topnav_link" href="">Critiques</a>
 <?php
 		if (!isset($_SESSION["pseudo"])) {
-			?>
-			<a class="topnav_link" href="register.php">ENREGISTREMENT</a>
-			<a class="topnav_link" href="login.php">CONNEXION</a>
+			?>			
+			<a class="topnav_link" href="register.php">Enregistrement</a>
+			<a class="topnav_link" href="login.php">Connexion</a>
+		<?php }
+		else {			
+			if ($_SESSION["role"]=="critique" or $_SESSION["role"]=="administrateur"){
+				?>
+				<a class="topnav_link" href="">Création</a>
+				<a class="topnav_link" href="">Dashboard</a>
 			<?php
-		} else {
-			?>
-			<a class="topnav_link" href="disconnect.php">DECONNEXION</a>
-			<?php
-		}
-	?>
+			}
+			if ($_SESSION["role"]=="administrateur"){
+				?>
+				<a class="topnav_link" href="">Gérer</a>
+			<?php } ?>
+			<a class="topnav_link" href="disconnect.php">Deconnexion</a>
+			<?php } ?>
 </div>
     
 </body>

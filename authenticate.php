@@ -3,7 +3,7 @@
     $_SESSION["erreur"]=null; 
 	require_once("db.php");
 	$db_request = $db_connection->prepare(
-		"SELECT pseudo, email, password FROM user WHERE pseudo = :pseudo"
+		"SELECT pseudo, email, password, role FROM user WHERE pseudo = :pseudo"
 	);
 	$db_request->execute([
 		":pseudo" => $_POST["pseudo"],
@@ -13,6 +13,7 @@
 		$_SESSION["pseudo"] = $user["pseudo"];
 		$_SESSION["email"] = $user["email"];
 		$_SESSION["mdp"] = $user["password"];
+		$_SESSION["role"] = $user["role"];
 		header("Location: index.php");
 		exit();
 	} else {
