@@ -28,6 +28,7 @@ article {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     width: 300px;
     text-align: center;
+    margin: 10px;
 }
 
 /* Titre */
@@ -96,4 +97,12 @@ input {
 
 .topnav_link[href="disconnect.php"]:hover {
     background-color: #a71d2a;
+}
+
+.dashboard{
+    flex-direction: column;
+}
+p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
