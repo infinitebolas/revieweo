@@ -15,6 +15,7 @@
 		$_SESSION["email"] = $user["email"];
 		$_SESSION["mdp"] = $user["password"];
 		$_SESSION["role"] = $user["role"];
+
 		header("Location: index.php");
 		exit();
 	} else {
