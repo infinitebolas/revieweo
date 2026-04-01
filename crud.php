@@ -12,8 +12,11 @@ class Critiques{
 
     public function Supprimer(int $critique_id):void{
         require_once('db.php');
-        $db_critiques = $db_connection->prepare("DELETE FROM critique WHERE id_critique = :id "); 
-        $db_critiques -> execute([":id" => $critique_id]);
+        $db_critiques = $db_connection->prepare("DELETE FROM critique WHERE id_critique = :id AND id_user = :user"); 
+        $db_critiques -> execute(
+            [":id" => $critique_id,
+            ":user" => $_SESSION['id_user']
+        ]);
     }
 }
 
