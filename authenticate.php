@@ -10,7 +10,7 @@
 	]);
 	$user = $db_request->fetch();
 	if (password_verify($_POST["mdp"], $user["password"])) {
-		$_SESSION["id"] = $user["id"];
+		$_SESSION["id_user"] = $user["id"];
 		$_SESSION["pseudo"] = $user["pseudo"];
 		$_SESSION["email"] = $user["email"];
 		$_SESSION["mdp"] = $user["password"];
