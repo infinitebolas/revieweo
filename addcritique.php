@@ -19,15 +19,16 @@ final class CritiqueRepository
     {
     }
 
-    public function create(string $titre, string $contenu, int $idUser): void
+    public function create(string $titre, string $contenu, float $note, int $idUser): void
     {
         $stmt = $this->pdo->prepare(
-            "INSERT INTO critique (titre, contenu, date_creation, id_user)
-             VALUES (:titre, :contenu, NOW(), :id_user)"
+            "INSERT INTO critique (titre, contenu, note, date_creation, id_user)
+             VALUES (:titre, :contenu, :note, NOW(), :id_user)"
         );
         $stmt->execute([
             "titre" => $titre,
             "contenu" => $contenu,
+            "note" => $note,
             "id_user" => $idUser,
         ]);
     }
@@ -43,6 +44,7 @@ if (!isset($_SESSION["csrf_token"])) {
 if (($_SESSION["role"] ?? "") === "critique" && $_SERVER["REQUEST_METHOD"] === "POST") {
     $titre = trim((string) ($_POST["titre"] ?? ""));
     $contenu = trim((string) ($_POST["contenu"] ?? ""));
+    $noteRaw = trim((string) ($_POST["note"] ?? ""));
     $csrfToken = (string) ($_POST["csrf_token"] ?? "");
 
     if (!hash_equals($_SESSION["csrf_token"], $csrfToken)) {
@@ -57,11 +59,20 @@ if (($_SESSION["role"] ?? "") === "critique" && $_SERVER["REQUEST_METHOD"] === "
         $errors[] = "Le contenu doit contenir au moins 20 caracteres.";
     }
 
+    if (!is_numeric($noteRaw)) {
+        $errors[] = "La note doit etre un nombre.";
+    }
+
+    $note = (float) $noteRaw;
+    if ($note < 0 || $note > 10) {
+        $errors[] = "La note doit etre comprise entre 0 et 10.";
+    }
+
     if (empty($errors)) {
         try {
             $database = new Database();
             $repository = new CritiqueRepository($database->getConnection());
-            $repository->create($titre, $contenu, (int) $_SESSION["user_id"]);
+            $repository->create($titre, $contenu, $note, (int) $_SESSION["user_id"]);
             $successMessage = "Critique ajoutee avec succes.";
         } catch (Throwable $throwable) {
             $errors[] = "Erreur lors de l'ajout de la critique: " . $throwable->getMessage();
@@ -127,6 +138,9 @@ if (($_SESSION["role"] ?? "") === "critique" && $_SERVER["REQUEST_METHOD"] === "
 
           <label for="contenu">Contenu</label>
           <textarea id="contenu" name="contenu" rows="7" placeholder="Ton avis detaille sur le film..." required></textarea>
+
+          <label for="note">Note (/10)</label>
+          <input id="note" name="note" type="number" min="0" max="10" step="0.1" placeholder="Ex: 8.5" required />
 
           <button class="btn primary auth-submit" type="submit">Publier la critique</button>
         </form>

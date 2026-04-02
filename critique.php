@@ -131,7 +131,7 @@ final class CritiqueRepository
     public function findAllWithAuthor(): array
     {
         $stmt = $this->pdo->query(
-            "SELECT c.id, c.titre, c.contenu, c.date_creation, c.id_user, u.pseudo
+            "SELECT c.id, c.titre, c.contenu, c.note, c.date_creation, c.id_user, u.pseudo
              FROM critique c
              LEFT JOIN `user` u ON u.id = c.id_user
              ORDER BY c.date_creation DESC, c.id DESC"
@@ -261,7 +261,7 @@ try {
             <div class="movie-content">
               <div class="movie-title">
                 <h3><?= htmlspecialchars((string) $critique["titre"], ENT_QUOTES, "UTF-8") ?></h3>
-                <span class="score">#<?= (int) $critique["id"] ?></span>
+                <span class="score"><?= number_format((float) $critique["note"], 1) ?>/10</span>
               </div>
               <p class="meta">
                 Par <?= htmlspecialchars((string) ($critique["pseudo"] ?? "Utilisateur"), ENT_QUOTES, "UTF-8") ?>
