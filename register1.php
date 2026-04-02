@@ -4,7 +4,7 @@ declare(strict_types=1);
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-    header("Location: critique.php");
+    header("Location: critique1.php");
     exit;
 }
 require_once __DIR__ . "/config/database.php";
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Revieweo - Inscription</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style1css" />
 </head>
 <body class="page-login">
   <header>
@@ -121,12 +121,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <nav>
         <ul>
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="critique.php">Critiques</a></li>
+          <li><a href="critique1.php">Critiques</a></li>
         </ul>
       </nav>
       <div class="nav-actions">
-        <a class="btn" href="login.php">Se connecter</a>
-        <a class="btn primary" href="register.php">Inscription</a>
+        <a class="btn" href="login1.php">Se connecter</a>
+        <a class="btn primary" href="register1.php">Inscription</a>
       </div>
     </div>
   </header>
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
       <?php endif; ?>
 
-      <form class="auth-form" action="register.php" method="post">
+      <form class="auth-form" action="register1.php" method="post">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION["csrf_token"], ENT_QUOTES, "UTF-8") ?>" />
 
         <label for="pseudo">Pseudo</label>
