@@ -1,55 +1,92 @@
 <?php
-session_start();
-
 require_once "db.php";
 require_once "Critique.php";
 
 $db = (new Database())->connect();
 $critique = new Critique($db);
 
-$critiques = $critique->getAll();
+$all = $critique->getAll();
+
+$featured = array_slice($all, 0, 5);
+
+$epingles = array_filter($all, fn($c) => $c['epingle'] == 1);
+
+$images = ["a.jpg","b.jpg","c.jpg","d.jpg","e.jpg","f.jpg","g.jpg"];
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <h2>🎬 Revieweo</h2>
-
-    <div>
-        <?php if(isset($_SESSION['user'])): ?>
-            <?= $_SESSION['user']['pseudo'] ?>
-            <a href="logout.php">Logout</a>
-        <?php else: ?>
-            <a href="login.php">Login</a>
-            <a href="register.php">Register</a>
-        <?php endif; ?>
-    </div>
+    <h2>Revieweo</h2>
 </header>
 
 <div class="container">
 
-<h1>Critiques de films</h1>
 
-<?php foreach($critiques as $c): ?>
+<h1> Films en avant</h1>
+<div class="featured">
 
-<div class="card">
-    <h3><?= $c['titre'] ?></h3>
-    <p><?= substr($c['contenu'], 0, 150) ?>...</p>
-    <p>⭐ <?= $c['note'] ?>/5</p>
-    <p>👤 <?= $c['pseudo'] ?></p>
+<?php $i=0; foreach($featured as $c): ?>
+<?php $img = $images[$i % count($images)]; $i++; ?>
 
-    <?php if(isset($_SESSION['user'])): ?>
-        <a href="like.php?id=<?= $c['id'] ?>">❤️ Like</a>
-    <?php endif; ?>
+<div class="featured-card">
+    <img src="<?= $img ?>">
+
+    <div class="overlay">
+        <h2><?= $c['titre'] ?></h2>
+        <p>⭐ <?= $c['note'] ?>/5</p>
+        <a href="detail.php?id=<?= $c['id'] ?>">Voir</a>
+    </div>
 </div>
 
 <?php endforeach; ?>
 
 </div>
+
+<h1> Critiques</h1>
+<div class="grid">
+
+<?php $i=0; foreach($all as $c): ?>
+<?php $img = $images[$i % count($images)]; $i++; ?>
+
+<div class="card">
+    <img src="<?= $img ?>">
+
+    <h3>
+        <a href="detail.php?id=<?= $c['id'] ?>">
+            <?= $c['titre'] ?>
+        </a>
+    </h3>
+
+    <p><?= substr($c['contenu'],0,100) ?>...</p>
+    <p>⭐ <?= $c['note'] ?>/5</p>
+</div>
+
+<?php endforeach; ?>
+
+</div>
+
+<h1> Films épinglés</h1>
+<div class="slider">
+
+<?php $i=0; foreach($epingles as $c): ?>
+<?php $img = $images[$i % count($images)]; $i++; ?>
+
+<div class="card">
+    <img src="<?= $img ?>">
+    <h3><?= $c['titre'] ?></h3>
+</div>
+
+<?php endforeach; ?>
+
+</div>
+
+</div>
+
 </body>
 </html>

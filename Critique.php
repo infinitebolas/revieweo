@@ -7,11 +7,7 @@ class Critique {
     }
 
     public function getAll() {
-        $sql = "SELECT critique.*, user.pseudo 
-                FROM critique 
-                JOIN user ON critique.id_user = user.id 
-                ORDER BY date_creation DESC";
-
+        $sql = "SELECT * FROM critique ORDER BY epingle DESC, id DESC";
         return $this->db->query($sql)->fetchAll();
     }
 }
