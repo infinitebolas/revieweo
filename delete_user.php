@@ -1,6 +1,6 @@
 <?php
 require_once("db.php");
-header('Content-Type: application/json');
+
 
 class User {
     private PDO $db;
@@ -15,14 +15,12 @@ class User {
     }
 }
 
-
 $pseudo = $_POST['pseudo'] ?? null;
 
 if (!$pseudo) {
     echo json_encode(["success" => false, "message" => "Pseudo manquant"]);
     exit;
 }
-
 
 $user = new User($db_connection);
 $results = $user->deleteByPseudo($pseudo);
