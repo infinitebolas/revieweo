@@ -41,4 +41,28 @@ class Critiques {
         ]);
         header("Refresh:0");
     }
+
+        public function Dislike(int $critique_id){
+        $stmt = $this->db->prepare("
+            DELETE FROM `like`
+            WHERE id_critique = :id AND id_user = :user
+        ");
+        $stmt->execute([
+            ":id" => $critique_id,
+            ":user" => $_SESSION['id_user']
+        ]);
+        header("Refresh:0");
+    }
+}
+
+if (isset($_POST['supprimer'])) {
+    require_once('db.php');
+    $critiques = new Critiques($db_connection); 
+    $critiques->Supprimer($_POST['id_critique']); 
+}
+
+if (isset($_POST['dislike'])) { 
+    require_once('db.php');
+    $critiques = new Critiques($db_connection); 
+    $critiques->Dislike($_POST['id_critique']); 
 }

@@ -11,11 +11,15 @@
 		<?php require_once("navbar.php"); ?>
 		<main>
 			<article>
-			<h2>S'Enregistrer</h2>
+			<h1>S'Enregistrer</h1>
 			<form action="registration.php" method="POST">
 					<input placeholder="Pseudo" name="pseudo"><br>
-					<input placeholder="Email" name="email"><br>
-					<input placeholder="Mot de passe" name="mdp"><br>
+					<input type="email" placeholder="Email" name="email"><br>
+					<input type="password" placeholder="Mot de passe" name="mdp"><br>
+					<select name="role">
+						<option>Utilisateur</option>
+						<option>Critique</option>
+					</select>
 					<input class="submit-button" type="submit">
 				</form>
                 <?php 

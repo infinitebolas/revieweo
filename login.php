@@ -14,7 +14,7 @@
 				<h1>Login</h1>
 				<form action="authenticate.php" method="POST">
 					<input placeholder="Pseudo" name="pseudo"><br>
-					<input placeholder="Mot de passe" name="mdp"><br>
+					<input type="password" placeholder="Mot de passe" name="mdp"><br>
 					<input class="submit-button" type="submit">
 				</form>
                 <?php if (isset($_SESSION["erreur"])){ ?>

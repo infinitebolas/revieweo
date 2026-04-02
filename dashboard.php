@@ -48,7 +48,7 @@
                             <p><?=$critique['contenu']?></p><br>
                             <form method="post">
                                 <input type="hidden" name="id_critique" value="<?=$critique['id_critique']?>">
-                                <button type="submit" name=dislike">Retirer le like</button>
+                                <button type="submit" name="dislike">Retirer le like</button>
                             </form>
                         </article>
                     <?php } ?>
