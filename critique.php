@@ -108,6 +108,11 @@ final class CritiqueRepository
 
         $this->pdo->beginTransaction();
         try {
+            $deleteCcStmt = $this->pdo->prepare(
+                "DELETE FROM critique_categorie WHERE id_critique = :id_critique"
+            );
+            $deleteCcStmt->execute(["id_critique" => $critiqueId]);
+
             $deleteLikesStmt = $this->pdo->prepare("DELETE FROM `like` WHERE id_critique = :id_critique");
             $deleteLikesStmt->execute(["id_critique" => $critiqueId]);
 
@@ -131,9 +136,12 @@ final class CritiqueRepository
     public function findAllWithAuthor(): array
     {
         $stmt = $this->pdo->query(
-            "SELECT c.id, c.titre, c.contenu, c.note, c.date_creation, c.id_user, u.pseudo
+            "SELECT c.id, c.titre, c.contenu, c.note, c.date_creation, c.id_user, u.pseudo,
+                    cat.nom AS categorie_nom
              FROM critique c
              LEFT JOIN `user` u ON u.id = c.id_user
+             LEFT JOIN critique_categorie cc ON cc.id_critique = c.id
+             LEFT JOIN categorie cat ON cat.id = cc.id_categorie
              ORDER BY c.date_creation DESC, c.id DESC"
         );
         return $stmt->fetchAll();
@@ -265,6 +273,9 @@ try {
               </div>
               <p class="meta">
                 Par <?= htmlspecialchars((string) ($critique["pseudo"] ?? "Utilisateur"), ENT_QUOTES, "UTF-8") ?>
+                <?php if (!empty($critique["categorie_nom"])): ?>
+                  - <?= htmlspecialchars((string) $critique["categorie_nom"], ENT_QUOTES, "UTF-8") ?>
+                <?php endif; ?>
                 - <?= htmlspecialchars((string) $critique["date_creation"], ENT_QUOTES, "UTF-8") ?>
               </p>
               <p class="excerpt"><?= nl2br(htmlspecialchars((string) $critique["contenu"], ENT_QUOTES, "UTF-8")) ?></p>
@@ -279,6 +290,7 @@ try {
                 </form>
 
                 <?php if ((int) $critique["id_user"] === $userId): ?>
+                  <a class="btn" href="editcritique.php?id=<?= (int) $critique["id"] ?>">Modifier</a>
                   <form method="post" onsubmit="return confirm('Supprimer cette critique ?');">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION["csrf_token"], ENT_QUOTES, "UTF-8") ?>" />
                     <input type="hidden" name="action" value="delete" />
