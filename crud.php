@@ -9,9 +9,10 @@ class Critiques {
 
     public function Afficher(int $user_id){
         $stmt = $this->db->prepare("
-            SELECT id_critique, titre, contenu, date_creation, note 
+            SELECT categorie.nom AS categorie, id_critique, titre, contenu, date_creation, note 
             FROM critique
             INNER JOIN user ON critique.id_user = user.id 
+            INNER JOIN categorie ON critique.id_categorie = categorie.id
             WHERE user.id = :user
         ");
         $stmt->execute([":user" => $user_id]);
@@ -65,4 +66,8 @@ if (isset($_POST['dislike'])) {
     require_once('db.php');
     $critiques = new Critiques($db_connection); 
     $critiques->Dislike($_POST['id_critique']); 
+}
+
+if (isset($_POST['modifier'])) { 
+    header('Location:modify.php');
 }
