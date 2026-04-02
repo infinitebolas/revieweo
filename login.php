@@ -13,13 +13,12 @@
 			<article>
 				<h1>Login</h1>
 				<form action="authenticate.php" method="POST">
-					<input type="email" placeholder="Email" name="email"><br>
-					<input type="password" placeholder="Mot de passe" name="mdp"><br>
+					<input type="email" placeholder="Email" name="email" required><br>
+					<input type="password" placeholder="Mot de passe" name="mdp" required><br>
 					<input class="submit-button" type="submit">
 				</form>
                 <?php if (isset($_SESSION["erreur"])){ ?>
                     <p class="erreur">Erreur lors de la connexion</p> 
-					<p><?php echo $_SESSION["erreur"]; ?></p>
                 <?php $_SESSION["erreur"]=null; }?>
 			</article>
 		</main>

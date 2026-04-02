@@ -13,9 +13,9 @@
 			<article>
 			<h1>S'Enregistrer</h1>
 			<form action="registration.php" method="POST">
-					<input placeholder="Pseudo" name="pseudo"><br>
-					<input type="email" placeholder="Email" name="email"><br>
-					<input type="password" placeholder="Mot de passe" name="mdp"><br>
+					<input placeholder="Pseudo" name="pseudo" required><br>
+					<input type="email" placeholder="Email" name="email" required><br>
+					<input type="password" placeholder="Mot de passe" name="mdp" required><br>
 					<select name="role">
 						<option>Utilisateur</option>
 						<option>Critique</option>
