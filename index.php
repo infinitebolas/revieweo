@@ -1,35 +1,55 @@
 <?php
 session_start();
+
 require_once "db.php";
+require_once "Critique.php";
 
-$sql = "SELECT critique.*, user.pseudo 
-        FROM critique 
-        JOIN user ON critique.id_user = user.id 
-        ORDER BY date_creation DESC";
+$db = (new Database())->connect();
+$critique = new Critique($db);
 
-$req = $db_connection->query($sql);
-$critiques = $req->fetchAll();
+$critiques = $critique->getAll();
 ?>
 
-<h2>Liste des critiques</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h2>🎬 Revieweo</h2>
+
+    <div>
+        <?php if(isset($_SESSION['user'])): ?>
+            <?= $_SESSION['user']['pseudo'] ?>
+            <a href="logout.php">Logout</a>
+        <?php else: ?>
+            <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
+        <?php endif; ?>
+    </div>
+</header>
+
+<div class="container">
+
+<h1>Critiques de films</h1>
 
 <?php foreach($critiques as $c): ?>
 
-    <hr>
+<div class="card">
     <h3><?= $c['titre'] ?></h3>
-    <p><?= $c['contenu'] ?></p>
-    <p>Note : <?= $c['note'] ?>/5</p>
-    <p>Auteur : <?= $c['pseudo'] ?></p>
+    <p><?= substr($c['contenu'], 0, 150) ?>...</p>
+    <p>⭐ <?= $c['note'] ?>/5</p>
+    <p>👤 <?= $c['pseudo'] ?></p>
+
+    <?php if(isset($_SESSION['user'])): ?>
+        <a href="like.php?id=<?= $c['id'] ?>">❤️ Like</a>
+    <?php endif; ?>
+</div>
 
 <?php endforeach; ?>
 
-<hr>
-
-<?php if(isset($_SESSION['user'])): ?>
-    <p>Connecté : <?= $_SESSION['user']['pseudo'] ?></p>
-    <a href="dashboard.php">Dashboard</a><br>
-    <a href="logout.php">Logout</a>
-<?php else: ?>
-    <a href="login.php">Login</a><br>
-    <a href="register.php">Register</a>
-<?php endif; ?>
+</div>
+</body>
+</html>
