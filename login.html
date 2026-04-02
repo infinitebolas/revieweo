@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revieweo - Connexion</title>
+  <link rel="stylesheet" href="style1css" />
+</head>
+<body class="page-login">
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand">Review<span>eo</span></a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="critique1.php">Critiques</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn" href="login1.php">Se connecter</a>
+        <a class="btn primary" href="register1.php">Inscription</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container auth-layout">
+    <section class="auth-card hero-card">
+      <h1>Connexion</h1>
+      <p>Connecte-toi pour publier des critiques et liker tes films preferes.</p>
+
+      <form class="auth-form" action="#" method="post">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="exemple@mail.com" required />
+
+        <label for="password">Mot de passe</label>
+        <input id="password" name="password" type="password" placeholder="********" required />
+
+        <button class="btn primary auth-submit" type="submit">Se connecter</button>
+      </form>
+
+      <p class="auth-link">
+        Pas encore de compte ? <a href="register1.php">Inscris-toi</a>
+      </p>
+    </section>
+  </main>
+</body>
+</html>
