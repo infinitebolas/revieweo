@@ -183,9 +183,11 @@
                                         if (action === "epingle.php") {
                                             btnPin.textContent = "Retirer l’épingle";
                                             card.classList.add("border-info");
+                                            container.prepend(card);
                                         } else {
                                             btnPin.textContent = "Épingler";
                                             card.classList.remove("border-info");
+                                            container.appendChild(card);
                                         }
                                     } else {
                                         alert("Erreur lors de l’action sur l’épingle.");
