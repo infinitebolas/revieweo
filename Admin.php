@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,6 +15,7 @@
 </head>
 
 <body>
+    <?php require_once('navbar.php'); ?>
     <div class="container mt-4">
         <h1 class="text-center mb-4">Interface Admin</h1>
 
@@ -19,7 +23,7 @@
 
 
             <div class="col-md-6 mb-4">
-                <div class="d-flex justify-content-between align-items-center">
+                <div class=" justify-content-between align-items-center">
                     <h2>Liste Users</h2>
                     <button class="btn btn-primary btn_usr">Afficher</button>
                 </div>
@@ -28,7 +32,7 @@
 
 
             <div class="col-md-6 mb-4">
-                <div class="d-flex justify-content-between align-items-center">
+                <div class=" justify-content-between align-items-center">
                     <h2>Critiques</h2>
                     <button class="btn btn-primary btn_crit">Afficher</button>
                 </div>

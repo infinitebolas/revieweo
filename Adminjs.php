@@ -142,7 +142,7 @@
                         btnEdit.textContent = "Modifier";
 
                         btnEdit.addEventListener("click", () => {
-                            window.location.href = "admin.html";
+                            window.location.href = "admin.html";//gbyrjhdgbdfjngbvfhfngbdhjfgvfd
                         });
 
 
@@ -156,7 +156,7 @@
                                 headers: {
                                     "Content-Type": "application/x-www-form-urlencoded"
                                 },
-                                body: `id_critique=${encodeURIComponent(critique.id)}`
+                                body: `id_critique=${encodeURIComponent(critique.id_critique)}`
                             })
                             .then(res => res.json())
                             .then(result => {
@@ -175,7 +175,7 @@
                                     headers: {
                                         "Content-Type": "application/x-www-form-urlencoded"
                                     },
-                                    body: `id_critique=${encodeURIComponent(critique.id)}`
+                                    body: `id_critique=${encodeURIComponent(critique.id_critique)}`
                                 })
                                 .then(res => res.json())
                                 .then(result => {

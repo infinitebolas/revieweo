@@ -8,7 +8,7 @@ class Critique {
     }
 
     public function epinglerCritique($id): bool {
-        $req = $this->db->prepare("UPDATE critique SET epingle = 1 WHERE id = :id");
+        $req = $this->db->prepare("UPDATE critique SET epingle = 1 WHERE id_critique = :id");
         return $req->execute(['id' => $id]);
     }
 }

@@ -10,43 +10,46 @@ class Critique {
         $query = "
             SELECT c.*, u.pseudo
             FROM critique c
-            JOIN user u ON c.id_user = u.id
-            WHERE c.id = :id
+            LEFT JOIN user u ON c.id_user = u.id
+            WHERE c.id_critique = :id
         ";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
+        $stmt->execute([":id" => $id]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
     public function getCategories($id) {
         $query = "
             SELECT cat.nom
             FROM categorie cat
-            JOIN critique_categorie cc ON cat.id = cc.id_categorie
-            WHERE cc.id_critique = :id
+            JOIN critique c ON c.id_categorie = cat.id
+            WHERE c.id_critique = :id
         ";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
+        $stmt->execute([":id" => $id]);
 
-        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN) ?: [];
     }
 
     public function countLikes($id) {
         $query = "SELECT COUNT(*) as total FROM `like` WHERE id_critique = :id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([":id" => $id]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? (int)$result['total'] : 0;
     }
 
     public function isLikedByUser($user_id, $critique_id) {
-        $query = "SELECT * FROM `like` WHERE id_user = :user AND id_critique = :critique";
+        $query = "
+            SELECT 1 FROM `like`
+            WHERE id_user = :user AND id_critique = :critique
+        ";
+
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
             ":user" => $user_id,

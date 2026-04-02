@@ -11,8 +11,7 @@
 
 
 <div class="login">
-	<a class="topnav_link" href="">Accueil</a>
-	<a class="topnav_link" href="">Critiques</a>
+	<a class="topnav_link" href="index.php">Accueil</a>
 <?php
 		if (!isset($_SESSION["pseudo"])) {
 			?>			
@@ -28,7 +27,7 @@
 			}
 			if ($_SESSION["role"]=="administrateur"){
 				?>
-				<a class="topnav_link" href="">Gérer</a>
+				<a class="topnav_link" href="Admin.php">Gérer</a>
 			<?php } ?>
 			<a class="topnav_link" href="disconnect.php">Deconnexion</a>
 			<?php } ?>

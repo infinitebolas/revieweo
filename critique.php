@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['user_id'] = 2;
 
 require_once "config/Database.php";
 require_once "models/Critique.php";
@@ -58,7 +57,7 @@ function afficherEtoiles($note)
 </head>
 
 <body>
-
+    <?php require_once('navbar.php'); ?>
     <div class="container">
         <div class="card shadow p-4">
 

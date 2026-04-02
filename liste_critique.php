@@ -10,10 +10,10 @@ class Critique {
 
     public function getAllCritiques(): array {
         $crit = $this->db->prepare("
-            SELECT c.id, c.titre, c.contenu, c.epingle, u.pseudo
+            SELECT c.id_critique, c.titre, c.contenu, c.epingle, u.pseudo
             FROM critique c
             LEFT JOIN user u ON c.id_user = u.id
-            ORDER BY c.epingle DESC, c.id ASC
+            ORDER BY c.epingle DESC, c.id_critique ASC
         ");
         $crit->execute();
         return $crit->fetchAll(PDO::FETCH_ASSOC);

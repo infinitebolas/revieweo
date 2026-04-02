@@ -9,7 +9,7 @@ class Critique {
     }
 
     public function deleteCritique(int $id): array {
-        $crit = "DELETE FROM critique WHERE id = :id";
+        $crit = "DELETE FROM critique WHERE id_critique = :id";
         $supp = $this->db->prepare($crit);
         $supp->bindParam(':id', $id, PDO::PARAM_INT);
 

@@ -4,12 +4,12 @@ require_once "config/Database.php";
 
 header('Content-Type: application/json');
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['id_user'])) {
     echo json_encode(["success" => false]);
     exit;
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['id_user'];
 $critique_id = $_POST['id'];
 
 $database = new Database();
