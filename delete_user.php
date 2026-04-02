@@ -1,11 +1,31 @@
 <?php
 require_once("db.php");
+header('Content-Type: application/json');
 
-$pseudo = $_POST['pseudo'];
+class User {
+    private PDO $db;
 
-$supp = $db_connection->prepare("DELETE FROM user WHERE pseudo = :pseudo");
-$result = $supp->execute(['pseudo' => $pseudo]);
+    public function __construct(PDO $db) {
+        $this->db = $db;
+    }
 
-if ($result) {
-    echo json_encode(["success" => true]);
+    public function deleteByPseudo(string $pseudo): bool {
+        $pseudos = $this->db->prepare("DELETE FROM user WHERE pseudo = :pseudo");
+        return $pseudos->execute(['pseudo' => $pseudo]);
+    }
 }
+
+
+$pseudo = $_POST['pseudo'] ?? null;
+
+if (!$pseudo) {
+    echo json_encode(["success" => false, "message" => "Pseudo manquant"]);
+    exit;
+}
+
+
+$user = new User($db_connection);
+$results = $user->deleteByPseudo($pseudo);
+
+
+echo json_encode(["success" => $results]);
