@@ -1,0 +1,121 @@
+*{
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* Conteneur principal */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width:100%;
+}
+
+/* Carte du formulaire */
+article {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 400px;
+    text-align: center;
+    margin: 10px;
+}
+
+/* Titre */
+h1 {
+    margin-bottom: 20px;
+}
+
+h2,.titre {
+    margin-top: 90px;
+}
+
+
+/* Inputs */
+input , select{
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Bouton */
+.submit-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Message d'erreur */
+.erreur {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Barre du haut */
+.login {
+    background-color: #1e1e2f;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+/* Liens */
+.topnav_link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 15px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+/* Hover effet */
+.topnav_link:hover {
+    background-color: #007BFF;
+}
+
+/* Bouton déconnexion (optionnel style différent) */
+.topnav_link[href="disconnect.php"] {
+    background-color: #dc3545;
+}
+
+.topnav_link[href="disconnect.php"]:hover {
+    background-color: #a71d2a;
+}
+
+.dashboard{
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    height:100%;
+    justify-content: center;
+    align-items: center;
+}
+p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
