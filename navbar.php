@@ -21,7 +21,7 @@
 		else {			
 			if ($_SESSION["role"]=="critique" or $_SESSION["role"]=="administrateur"){
 				?>
-				<a class="topnav_link" href="">Création</a>
+				<a class="topnav_link" href="Creation.php">Création</a>
 				<a class="topnav_link" href="dashboard.php">Dashboard</a>
 			<?php
 			}

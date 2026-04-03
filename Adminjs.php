@@ -142,7 +142,7 @@
                         btnEdit.textContent = "Modifier";
 
                         btnEdit.addEventListener("click", () => {
-                            window.location.href = "admin.html";//gbyrjhdgbdfjngbvfhfngbdhjfgvfd
+                            window.location.href = `modify.php?id=${critique.id_critique}`;
                         });
 
 

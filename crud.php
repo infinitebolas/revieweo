@@ -69,5 +69,5 @@ if (isset($_POST['dislike'])) {
 }
 
 if (isset($_POST['modifier'])) { 
-    header('Location:modify.php');
+    header('Location:modify.php?id='.$_POST['id_critique']);
 }
